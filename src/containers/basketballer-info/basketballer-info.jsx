@@ -4,6 +4,7 @@ import HeaderSelector from '../header-selector/header-selector'
 import {connect} from 'react-redux'
 import {updateUser} from "../../redux/actions";
 import {Redirect} from 'react-router-dom'
+
 class BasketballerInfo extends Component {
   state={
     header:'',
@@ -22,11 +23,12 @@ class BasketballerInfo extends Component {
     this.props.updateUser(this.state)
   }
   render() {
-    const {header,type} = this.props.user;
+    const {type,header} = this.props.user;
     if(header){
-        if(type === 'baskerballer') {
-          return <Redirect to='/basketballer'/>
-        }
+      // debugger
+      if(type === 'basketballer'){
+        return <Redirect to='/basketballer'/>
+      }
     }
     return (
       <div>

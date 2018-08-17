@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {AUTH_SUCCESS,ERRMSG,RESET_USER,RECEIVE_USER} from './action-types'
+import {AUTH_SUCCESS,ERRMSG,RESET_USER,RECEIVE_USER,RECEIVE_USER_LIST} from './action-types'
 import {getRedirect} from "../util/index";
 
 const initUser = {
@@ -7,8 +7,8 @@ const initUser = {
   type:'',
   msg:'',
   redirectTo:''
-
 }
+const initUserList = [];
 function user(state=initUser,action) { //action中有两个属性，一个是type,一个是data
   switch (action.type){
     case AUTH_SUCCESS:
@@ -26,7 +26,15 @@ function user(state=initUser,action) { //action中有两个属性，一个是typ
       return state;
   }
 }
-
+function userList(state=initUserList,action) {
+  switch (action.type){
+    case RECEIVE_USER_LIST:
+      return action.data;
+    default:
+      return state;
+  }
+}
 export default combineReducers({
-  user
+  user,
+  userList
 })
